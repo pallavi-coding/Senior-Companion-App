@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Assistant</title>
+    <style>
+        /* Add your CSS styles here for formatting */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #50659d;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* Add additional CSS styling as needed */
+    </style> >
+</head>
+<body>
+    <div class="header">
+        <h1>Virtual Assistant</h1>
+    </div>
+    <div class="container">
+        <h2>Welcome to our Virtual Assistant</h2>
+        <div id="chatbox">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div id="user-input">
+            <input type="text" id="user-message" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling user messages and virtual assistant responses
+        function sendMessage() {
+            const userMessage = document.getElementById('user-message').value;
+            const chatbox = document.getElementById('chatbox');
+
+            // Display user message
+            chatbox.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+
+            // Simulate virtual assistant response (you can replace this with actual logic)
+            const virtualAssistantResponse = "hello!";
+            chatbox.innerHTML += `<p><strong>Virtual Assistant:</strong> ${virtualAssistantResponse}</p>`;
+
+            // Clear the input field
+            document.getElementById('user-message').value = '';
+        }
+    </script>
+</body>
+</html>

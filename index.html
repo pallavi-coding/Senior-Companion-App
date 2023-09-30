@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Companion Website</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to the Senior Companion Website</h1>
+    </header>
+
+    <!-- Registration Section -->
+    <section id="registration">
+        <h2>User Registration</h2>
+        <br>
+        <form id="registration-form" action="./landing.html" method="get">
+            <label for="name">First and Last Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="zipcode">Zip Code:</label>
+            <input type="text" id="zipcode" name="zipcode" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="income">Family Income:</label>
+            <input type="number" id="income" name="income" required>
+
+            <h3>Health Problems (Check all that apply):</h3>
+                <label>
+                    <input type="checkbox" name="health_problem" value="hypertension"> Hypertension
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" name="health_problem" value="diabetes"> Diabetes
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" name="health_problem" value="arthritis"> Arthritis
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" name="health_problem" value="parkinsons"> Parkinsons
+                </label>
+                <br>
+                <label>
+                    Other
+                    <br>
+                    <input type="text" name="health_problem" value="">
+                </label>
+                <br>
+
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2023 Senior Companion Website</p>
+    </footer>
+</body>
+</html>

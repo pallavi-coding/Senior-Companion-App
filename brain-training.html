@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Memory Game</title>
+    <style>
+        /* Add your CSS styles here for formatting */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 5px;
+            margin: 5px;
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Memory Game</h1>
+    <p>Watch the color sequence, then repeat it by clicking the boxes.</p>
+
+    <div id="game-board">
+        <div class="color-grid"></div>
+    </div>
+    <button onclick="startGame()">Start Game</button>
+
+    <script>
+        const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'cyan', 'lime', 'magenta', 'teal', 'indigo', 'maroon', 'navy', 'olive'];
+        const sequence = [];
+        const playerSequence = [];
+        let round = 1;
+        let canClick = false;
+
+        function startGame() {
+            clearBoard();
+            generateSequence(round);
+            setTimeout(showSequence, 1000);
+        }
+
+        function clearBoard() {
+            sequence.length = 0;
+            playerSequence.length = 0;
+            canClick = false;
+        }
+
+        function generateSequence(round) {
+            for (let i = 0; i < round; i++) {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                sequence.push(randomColor);
+            }
+        }
+
+        function showSequence() {
+            canClick = false;
+            let i = 0;
+            const intervalId = setInterval(function () {
+                flashColor(sequence[i]);
+                i++;
+                if (i >= sequence.length) {
+                    clearInterval(intervalId);
+                    canClick = true;
+                }
+            }, 1000);
+        }
+
+        function flashColor(color) {
+            const box = document.querySelector(`.${color}-box`);
+            box.style.backgroundColor = color;
+            setTimeout(() => {
+                box.style.backgroundColor = 'white';
+            }, 500);
+        }
+
+        function checkSequence() {
+            if (!canClick) return;
+            const clickedColor = this.dataset.color;
+            flashColor(clickedColor);
+            playerSequence.push(clickedColor);
+
+            if (playerSequence.length === sequence.length) {
+                const isCorrect = playerSequence.every((color, index) => color === sequence[index]);
+                if (isCorrect) {
+                    round++;
+                    setTimeout(() => {
+                        clearBoard();
+                        generateSequence(round);
+                        setTimeout(showSequence, 1000);
+                    }, 1000);
+                } else {
+                    alert('Game Over! You made a mistake.');
+                    startGame();
+                }
+            }
+        }
+
+        const colorGrid = document.querySelector('.color-grid');
+        colors.forEach(color => {
+            const box = document.createElement('div');
+            box.classList.add('color-box', `${color}-box`);
+            box.dataset.color = color;
+            box.addEventListener('click', checkSequence);
+            colorGrid.appendChild(box);
+        });
+    </script>
+</body>
+</html>
